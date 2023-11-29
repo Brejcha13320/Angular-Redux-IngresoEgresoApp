@@ -39,22 +39,10 @@ export class LoginComponent implements OnDestroy {
   loginUsuario() {
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
-
       this.store.dispatch(ui.isLoading());
-
-      // Swal.fire({
-      //   title: 'Espere por favor',
-      //   showConfirmButton: false,
-      //   willOpen: () => {
-      //     Swal.showLoading();
-      //   },
-      // });
-
       this.authService
         .loginUsuario(email, password)
         .then((credenciales) => {
-          console.log({ credenciales });
-          // Swal.close();
           this.store.dispatch(ui.stopLoading());
           this.router.navigate(['/']);
         })

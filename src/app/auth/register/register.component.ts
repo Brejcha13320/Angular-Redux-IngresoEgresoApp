@@ -43,20 +43,9 @@ export class RegisterComponent implements OnDestroy {
       const { nombre, correo, password } = this.registroForm.value;
 
       this.store.dispatch(ui.isLoading());
-
-      // Swal.fire({
-      //   title: 'Espere por favor',
-      //   showConfirmButton: false,
-      //   willOpen: () => {
-      //     Swal.showLoading();
-      //   },
-      // });
-
       this.authService
         .crearUsuario(nombre, correo, password)
         .then((credenciales) => {
-          console.log({ credenciales });
-          // Swal.close();
           this.store.dispatch(ui.stopLoading());
           this.router.navigate(['/']);
         })
